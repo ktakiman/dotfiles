@@ -20,7 +20,7 @@ fi
 echo "source ${DOTFILEDIR}/home/.bashrc" >> ~/.bashrc
 
 # .gitconfig
-echo "[include]\n\tpath=${DOTFILEDIR}/home/.gitconfig" >> ~/.gitconfig
+printf "[include]\n\tpath=${DOTFILEDIR}/home/.gitconfig" >> ~/.gitconfig
 
 #------------------------------------------------------------------------------
 # setup nvim
