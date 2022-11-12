@@ -1,0 +1,20 @@
+[alias]
+	co = checkout
+	com = checkout master
+	cop = checkout @{-1}
+	lol = log --pretty=format:\"%h %ad %<(17)%an   %s\" --date=short
+	dftm = difftool master... -d
+	st = status -u
+	br = branch
+	dft = difftool
+	ft = fetch -p
+	ftm = fetch -p origin master:master
+	cm = commit
+	sts = stash --include-untracked
+
+[core]
+	editor = nvim
+
+# inside ~/.gitconfig
+# [include]
+#   path = .dotfiles/.gitconfig
