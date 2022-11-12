@@ -14,6 +14,12 @@ telescope.setup({
 -- can configure this also, check help I guess
 telescope.load_extension "file_browser"
 
+vim.keymap.set('n', '<c-p>', function() require('telescope.builtin').git_files() end)
+vim.keymap.set('n', '<c-h>', function() require('telescope.builtin').buffers() end)
+vim.keymap.set('n', '<c-x>', function() require('telescope.builtin').grep_string() end)
+vim.keymap.set('n', '<c-\\>', function() require('telescope.builtin').live_grep() end)
+vim.keymap.set('n', '<c-s>', function() require('telescope.builtin').grep_string() end)
+
 vim.keymap.set('n', '<leader>bi', [[<cmd>lua require('telescope.builtin').builtin()<cr>]])
 vim.keymap.set('n', '<leader>km', [[<cmd>lua require('telescope.builtin').keymaps()<cr>]])
 vim.keymap.set('n', '<leader>op', [[<cmd>lua require('telescope.builtin').vim_options()<cr>]])
