@@ -1,7 +1,9 @@
 #!/bin/bash
 
 #------------------------------------------------------------------------------
-# clone dotfiles repo
+# clone dotfiles repo 
+# (this part is redundant since I need to clone the repo first to have this file
+#  on the target marchine)
 #------------------------------------------------------------------------------
 DOTFILEDIR=~/.dotfiles
 if [ ! -d $DOTFILEDIR ]; then
@@ -11,10 +13,14 @@ if [ ! -d $DOTFILEDIR ]; then
 fi
 
 #------------------------------------------------------------------------------
-# install dotfiles under ~
+# setup dotfiles under ~
 #------------------------------------------------------------------------------
 
-# don't have any yet :)
+# .bashrc
+echo "source ${DOTFILEDIR}/home/.bashrc" >> ~/.bashrc
+
+# .gitconfig
+echo "[include]\n\tpath=${DOTFILEDIR}/home/.gitconfig" >> ~/.gitconfig
 
 #------------------------------------------------------------------------------
 # setup nvim
@@ -31,8 +37,10 @@ if [ $? != 0 ];then
   fi
 fi
 
-mkdir ~/.config
-ln -s "${DOTFILEDIR}/xdg_config/nvim" ~/.config/
+mkdir -p ~/.config/nvim
+# packer creates a file under ~/.config/nvim/plugin/ so not symlinking 
+ln -s "${DOTFILEDIR}/xdg_config/nvim/init.lua" ~/.config/nvim/
+ln -s "${DOTFILEDIR}/xdg_config/nvim/lua" ~/.config/nvim/
 
 # setup packer.nvim
 PACKERDIR=~/.local/share/nvim/site/pack/packer/start/packer.nvim
