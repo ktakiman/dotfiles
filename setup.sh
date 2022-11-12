@@ -7,9 +7,7 @@
 #------------------------------------------------------------------------------
 DOTFILEDIR=~/.dotfiles
 if [ ! -d $DOTFILEDIR ]; then
-  mkdir $DOTFILEDIR
-  cd $DOTFILEDIR
-  git clone https://github.com/ktakiman/dotfiles .
+  git clone https://github.com/ktakiman/dotfiles $DOTFILEDIR
 fi
 
 #------------------------------------------------------------------------------
