@@ -31,6 +31,7 @@ if [ $? != 0 ];then
   fi
 fi
 
+mkdir ~/.config
 ln -s "${DOTFILEDIR}/xdg_config/nvim" ~/.config/
 
 # setup packer.nvim
@@ -38,5 +39,4 @@ PACKERDIR=~/.local/share/nvim/site/pack/packer/start/packer.nvim
 mkdir -p $PACKERDIR
 git clone --depth 1 https://github.com/wbthomason/packer.nvim $PACKERDIR
 
-PACKERONLY=1 
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+PACKERONLY=1 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
