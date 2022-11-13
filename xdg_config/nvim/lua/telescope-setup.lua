@@ -48,4 +48,9 @@ vim.keymap.set('n', '<leader>ffp', function() require('telescope.builtin').find_
 -- extension
 vim.keymap.set('n', '<leader>fb', function() require("telescope").load_extension('file_browser') end)
 
+-- [m]y[n]ote
+vim.keymap.set('n', '<leader>mn', function() require('telescope.builtin').git_files({cwd="~/mynote"}) end)
+
+-- [m]ynote [g]rep
+vim.keymap.set('n', '<leader>mg', function() require('telescope.builtin').live_grep({cwd="~/mynote"}) end)
 
