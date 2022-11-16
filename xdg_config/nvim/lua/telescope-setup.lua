@@ -42,11 +42,14 @@ vim.keymap.set('n', '<leader>lr', function() require('telescope.builtin').lsp_re
 vim.keymap.set('n', '<leader>ld', function() require('telescope.builtin').lsp_definitions() end)
 vim.keymap.set('n', '<leader>li', function() require('telescope.builtin').lsp_implementations() end)
 
-vim.keymap.set('n', '<leader>ffc', function() require('telescope.builtin').find_files({cwd="~/.config/"}) end)
+vim.keymap.set('n', '<leader>ffc', function() require('telescope.builtin').find_files({cwd="~/.config/", follow=true}) end)
 vim.keymap.set('n', '<leader>ffp', function() require('telescope.builtin').find_files({cwd="~/.local/share/nvim/site/packer"}) end)
 
 -- extension
 vim.keymap.set('n', '<leader>fb', function() require("telescope").load_extension('file_browser') end)
+
+-- [dot]files
+vim.keymap.set('n', '<leader>mn', function() require('telescope.builtin').git_files({cwd="~/.dotfiles"}) end)
 
 -- [m]y[n]ote
 vim.keymap.set('n', '<leader>mn', function() require('telescope.builtin').git_files({cwd="~/mynote"}) end)
