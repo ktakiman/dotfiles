@@ -46,7 +46,7 @@ vim.keymap.set('n', '<leader>ffc', function() require('telescope.builtin').find_
 vim.keymap.set('n', '<leader>ffp', function() require('telescope.builtin').find_files({cwd="~/.local/share/nvim/site/packer"}) end)
 
 -- extension
-vim.keymap.set('n', '<leader>fb', function() require("telescope").load_extension('file_browser') end)
+vim.keymap.set('n', '<leader>fb', function() require("telescope").extensions.file_browser.file_browser() end)
 
 -- [dot]files
 vim.keymap.set('n', '<leader>mn', function() require('telescope.builtin').git_files({cwd="~/.dotfiles"}) end)
