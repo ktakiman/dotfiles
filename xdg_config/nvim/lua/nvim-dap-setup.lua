@@ -10,46 +10,58 @@ dap.adapters.lldb = {
 
 -- this is my stuff to remember the last used executable (if 'Launch' option is used) or
 -- rmember the last used pid (if 'Attach' option is used)
-local cache = { cpp = {} }
+local cache = {}
 
-local function getCache(key, callback)
+local function getCache(lang, key, callback)
   local cwd = vim.fn.getcwd()
-  if not cache.cpp[cwd] then
-    cache.cpp[cwd] = {}
+  if not cache[lang] then
+    cache[lang] = {}
   end
-  local cached = cache.cpp[cwd][key]
+  if not cache[lang][cwd] then
+    cache[lang][cwd] = {}
+  end
+
+  local cached = cache[lang][cwd][key]
 
   -- get the new value, callback can just return the cached value, overwrite with new value
   -- or get the value if not cached yet
   local newValue = callback(cached, cached ~= nil)
-  cache.cpp[cwd][key] = newValue
+  cache[lang][cwd][key] = newValue
 
   return newValue
 end
 
-local function getProgram()
+local function getProgram(lang)
   -- P('program')
-  local v = getCache('program', function(cache, wasCached)
-    if wasCached then
-      return cache
-    else
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end
+  local v = getCache(lang, 'program', function(cached_value, was_cached)
+    local value_to_show = was_cached and cached_value or vim.fn.getcwd() .. '/'
+    return vim.fn.input('Path to executable: ', value_to_show, 'file')
   end)
 
-  print('getProgram = ' .. v)
+  print('program = ' .. v)
 
   return v
 end
 
-local function getPid()
-  local v = getCache('pid', function(cache, wasCached)
-    return tonumber(vim.fn.input('PID: ', cache == nil and '' or cache))
+local function getPid(lang)
+  local v = getCache(lang, 'pid', function(cached_value, was_cached)
+    local value_to_show = was_cached and cached_value or ''
+    return tonumber(vim.fn.input('PID: ', value_to_show))
   end)
 
-  print('getPid = ' .. v)
+  print('pid = ' .. v)
 
   return v
+end
+
+local function getArgs(lang)
+  local v = getCache(lang, 'args', function(cached_value, was_cached)
+    local value_to_show = was_cached and cached_value or ''
+    return vim.fn.input('args: ', value_to_show)
+  end)
+
+  print('args = ' .. v)
+  return v == '' and nil or { v }
 end
 
 dap.clearCache = function ()
@@ -66,11 +78,11 @@ dap.configurations.cpp = {
     name = 'Launch',
     type = 'lldb',
     request = 'launch',
-    program = getProgram,
+    program = function() return getProgram('cpp') end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
-    args = {},
-    -- 
+    args = function() return getArgs('cpp') end,
+     -- 
     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
     --
     --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
@@ -87,8 +99,8 @@ dap.configurations.cpp = {
     name = 'Attach',
     type = 'lldb',
     request = 'attach',
-    program = getProgram,
-    pid = getPid,
+    program = function() return getProgram('cpp') end,
+    pid = function() return getPid('cpp') end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
     args = {},
