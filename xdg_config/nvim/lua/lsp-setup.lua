@@ -52,3 +52,30 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- local sumneko_root_path = "/home/kei/dev/lua-language-server"
+-- local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
+local sumneko_binary = "/home/kei/dev/lua-language-server/bin/lua-language-server"
+nvim_lsp.sumneko_lua.setup({
+	cmd = { sumneko_binary },
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+				path = vim.split(package.path, ";"),
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        -- [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+        -- [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+        checkThirdParty = false,
+      },
+      telemetry = {
+        enable = false
+      },
+    },
+  },
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
