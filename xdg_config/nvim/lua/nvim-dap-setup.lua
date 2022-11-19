@@ -110,18 +110,26 @@ dap.configurations.cpp = {
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
-local widgets = require('dap.ui.widgets')
-
 -- my custom functions
+local widgets = require('dap.ui.widgets')
 dap.toggleScopes = function ()
   widgets.centered_float(widgets.scopes).toggle()
 end
 
-vim.keymap.set('n', '<f5>', function() require('dap').continue() end)
-vim.keymap.set('n', '<f10>', function() require('dap').step_over() end)
-vim.keymap.set('n', '<f11>', function() require('dap').step_into() end)
-vim.keymap.set('n', '<s-f11>', function() require('dap').step_out() end)
-vim.keymap.set('n', '<f8>', function() require('dap').step_out() end)
-vim.keymap.set('n', '<f9>', function() require('dap').toggle_breakpoint() end)
-vim.keymap.set('n', '<leader>dbs', function() require('dap').toggle_breakpoint() end)
+vim.keymap.set('n', '<f5>', dap.continue)
+vim.keymap.set('n', '<f10>', dap.step_over)
+vim.keymap.set('n', '<f11>', dap.step_into)
+vim.keymap.set('n', '<s-f11>', dap.step_out)
+vim.keymap.set('n', '<f8>', dap.step_out)
+vim.keymap.set('n', '<f9>', dap.toggle_breakpoint)
+vim.keymap.set('n', '<leader>dbs', dap.toggle_breakpoint)
+
+-- some dapui config (ui configuration is in nvim-dapui-setup.lua)
+local dapui = require('dapui');
+
+vim.keymap.set('n', '<f4>', dapui.toggle)
+
+dap.listeners.after['event_initialized']['dapui_config'] = dapui.open
+dap.listeners.before['event_terminated']['dapui_config'] = dapui.close
+dap.listeners.before['event_exited']['dapui_config'] = dapui.close
 
