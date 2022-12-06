@@ -41,20 +41,27 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 -- local servers = { "clangd", "html", "cssls", "dockerls" }
-local servers = { "clangd" }
+local servers = { 'clangd', 'cmake', }
 local nvim_lsp = require('lspconfig')
 local util = nvim_lsp.util;
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
   }
 end
 
+-- ## this does not work yet... ##
+-- nvim_lsp.dockerls.setup({
+--   cmd = { '/home/kei/.nvm/versions/node/v18.12.1/bin/docker-langserver', '--stdio' },
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+-- })
+
 -- local sumneko_root_path = "/home/kei/dev/lua-language-server"
 -- local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
-local sumneko_binary = "/home/kei/dev/lua-language-server/bin/lua-language-server"
+local sumneko_binary = '/home/kei/.local/lua-language-server/bin/lua-language-server'
 nvim_lsp.sumneko_lua.setup({
 	cmd = { sumneko_binary },
   settings = {
@@ -64,11 +71,11 @@ nvim_lsp.sumneko_lua.setup({
 				path = vim.split(package.path, ";"),
       },
       diagnostics = {
-        globals = {'vim'},
+        globals = { 'vim', 'love'},
       },
       workspace = {
-        -- [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-        -- [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
         checkThirdParty = false,
       },
       telemetry = {
