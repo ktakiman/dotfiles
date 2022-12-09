@@ -52,6 +52,8 @@ return require('packer').startup(function(use)
 
   use 'nvim-treesitter/nvim-treesitter'
 
+  use 'voldikss/vim-floaterm'
+
   use 'morhetz/gruvbox'
 end)
 
