@@ -17,11 +17,8 @@ require('keymap')
 -- global color setting
 require('color-setup')
 
--- my linting setup
+-- my linting setup (for all languages)
 require('lint-setup')
-
--- miscellaneous stuff...
-require('my-util')
 
 require('fugitive-setup')
 require('telescope-setup')
@@ -33,3 +30,6 @@ require('nvim-dap-setup')
 require('nvim-dapui-setup')
 require('nerdtree-setup')
 require('floaterm-setup')
+
+-- language specific setup
+require('cpp-setup')

@@ -25,6 +25,8 @@ local generateFormatFunc = function(createArgs)
   end
 end
 
+local group = vim.api.nvim_create_augroup('KeiLint', { clear = true })
+
 --------------------------------------------------------------------------------
 --  .js
 --------------------------------------------------------------------------------
@@ -44,8 +46,6 @@ end)
 local eslint = generateFormatFunc(function(path)
   return { 'npx', 'eslint', '--fix', path }
 end)
-
-local group = vim.api.nvim_create_augroup('KeiLint', { clear = true })
 
 vim.api.nvim_create_autocmd('BufWritePost', {
   group = group,
