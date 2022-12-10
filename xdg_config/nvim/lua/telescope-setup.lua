@@ -4,16 +4,17 @@ telescope.setup({
   defaults = {
     mappings = {
       i = {
-        ["<C-j>"] = require('telescope.actions').cycle_previewers_next,
-        ["<C-k>"] = require('telescope.actions').cycle_previewers_prev,
-      }
-    }
+        ['<C-j>'] = require('telescope.actions').cycle_previewers_next,
+        ['<C-k>'] = require('telescope.actions').cycle_previewers_prev,
+      },
+    },
   },
 })
 
 -- can configure this also, check help I guess
-telescope.load_extension "file_browser"
+telescope.load_extension('file_browser')
 
+-- stylua: ignore start
 vim.keymap.set('n', '<c-p>', function() require('telescope.builtin').git_files() end)
 vim.keymap.set('n', '<c-h>', function() require('telescope.builtin').buffers() end)
 vim.keymap.set('n', '<c-x>', function() require('telescope.builtin').grep_string() end)
@@ -57,3 +58,4 @@ vim.keymap.set('n', '<leader>mn', function() require('telescope.builtin').git_fi
 -- [m]ynote [g]rep
 vim.keymap.set('n', '<leader>mg', function() require('telescope.builtin').live_grep({cwd="~/mynote"}) end)
 
+-- stylua: ignore end

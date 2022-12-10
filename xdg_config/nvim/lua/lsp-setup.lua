@@ -1,7 +1,9 @@
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local function buf_set_option(...)
+    vim.api.nvim_buf_set_option(bufnr, ...)
+  end
 
   --Enable completion triggered by <c-x><c-o>
   -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -9,6 +11,7 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   local opts = { buffer = bufnr }
 
+  -- stylua: ignore start
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, opts)
   vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
@@ -32,24 +35,25 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>dp', function() vim.diagnostic.goto_prev() end, opts)
 
   vim.keymap.set('n', '<leader>mm', function() vim.lsp.buf.rename() end, opts)
-
+  -- stylua: ignore end
 end
 
 -- nvim-cmp integration
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities =
+  require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 -- local servers = { "clangd", "html", "cssls", "dockerls" }
-local servers = { 'clangd', 'cmake', }
+local servers = { 'clangd', 'cmake' }
 local nvim_lsp = require('lspconfig')
-local util = nvim_lsp.util;
+local util = nvim_lsp.util
 
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  nvim_lsp[lsp].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
 end
 
 -- ## this does not work yet... ##
@@ -63,23 +67,23 @@ end
 -- local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 local sumneko_binary = '/home/kei/.local/lua-language-server/bin/lua-language-server'
 nvim_lsp.sumneko_lua.setup({
-	cmd = { sumneko_binary },
+  cmd = { sumneko_binary },
   settings = {
     Lua = {
       runtime = {
         version = 'LuaJIT',
-				path = vim.split(package.path, ";"),
+        path = vim.split(package.path, ';'),
       },
       diagnostics = {
-        globals = { 'vim', 'love'},
+        globals = { 'vim', 'love' },
       },
       workspace = {
-        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
         checkThirdParty = false,
       },
       telemetry = {
-        enable = false
+        enable = false,
       },
     },
   },

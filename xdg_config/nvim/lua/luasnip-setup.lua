@@ -1,24 +1,24 @@
-local ls = require "luasnip"
-local types = require "luasnip.util.types"
+local ls = require('luasnip')
+local types = require('luasnip.util.types')
 
-ls.config.set_config {
+ls.config.set_config({
   history = true,
-  updateevents = "TextChanged,TextChangedI",
-}
+  updateevents = 'TextChanged,TextChangedI',
+})
 
-vim.keymap.set({ "i", "s" }, "<c-k>", function()
+vim.keymap.set({ 'i', 's' }, '<c-k>', function()
   if ls.expand_or_jumpable() then
     ls.expand_or_jump()
   end
 end, { silent = true })
 
-vim.keymap.set({ "i", "s" }, "<c-j>", function()
+vim.keymap.set({ 'i', 's' }, '<c-j>', function()
   if ls.jumpable(-1) then
     ls.jump(-1)
   end
 end, { silent = true })
 
-vim.keymap.set({ "n" }, "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/luasnip-setup.lua<cr>")
+vim.keymap.set({ 'n' }, '<leader><leader>s', '<cmd>source ~/.config/nvim/lua/luasnip-setup.lua<cr>')
 
 --[[
 ls.snippets = {
@@ -36,13 +36,16 @@ ls.snippets = {
 }
 --]]
 
-ls.add_snippets("all", { 
-  ls.parser.parse_snippet("header", "--------------------------------------------------------------------------------\n$0\n--------------------------------------------------------------------------------\n"),
-});
+ls.add_snippets('all', {
+  ls.parser.parse_snippet(
+    'header',
+    '--------------------------------------------------------------------------------\n$0\n--------------------------------------------------------------------------------\n'
+  ),
+})
 
-ls.add_snippets("cpp", { 
-  ls.parser.parse_snippet("pl", "std::cout << $0 << std::endl;"),
-});
+ls.add_snippets('cpp', {
+  ls.parser.parse_snippet('pl', 'std::cout << $0 << std::endl;'),
+})
 
 -- ls.add_snippets("javascript", {
 --   ls.parser.parse_snippet("cl", "console.log({ $0 });"),

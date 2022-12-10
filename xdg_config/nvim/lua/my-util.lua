@@ -1,7 +1,7 @@
 local map = {
-  cpp = { "h" },
-  cxx = { "h", "hxx" },
-  h =  { "cpp", "cxx" },
+  cpp = { 'h' },
+  cxx = { 'h', 'hxx' },
+  h = { 'cpp', 'cxx' },
 }
 
 local function try_open_pairing_file()
@@ -12,7 +12,7 @@ local function try_open_pairing_file()
   --   there should be a better way than doing this manually like this?
   local pos = 1
   while true do
-    local new_pos = string.find(path, "%.", pos)
+    local new_pos = string.find(path, '%.', pos)
     if new_pos ~= nil then
       pos = new_pos + 1
     else
@@ -38,7 +38,7 @@ local function try_open_pairing_file()
   end
 
   if not found then
-    print("no pairing file found")
+    print('no pairing file found')
   end
 end
 

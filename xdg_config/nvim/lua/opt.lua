@@ -28,4 +28,3 @@ vim.opt.clipboard = { 'unnamed', 'unnamedplus' }
 vim.opt.listchars = { tab = '»-', space = '.', eol = '↲', trail = '.' }
 
 vim.opt.mouse = 'nv'
-

@@ -1,4 +1,3 @@
-
 vim.keymap.set('n', '<C-n>', '<cmd>NERDTreeToggle<cr>')
 vim.keymap.set('n', '<leader>gf', '<cmd>NERDTreeFind<cr>')
 

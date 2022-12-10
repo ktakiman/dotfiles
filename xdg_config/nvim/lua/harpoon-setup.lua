@@ -1,3 +1,4 @@
+-- stylua: ignore start
 vim.keymap.set('n', '<leader>ha', function() require('harpoon.mark').add_file() end)
 vim.keymap.set('n', '<leader>he', function() require('harpoon.ui').toggle_quick_menu() end)
 
@@ -13,3 +14,4 @@ vim.keymap.set('n', '<leader>9', function() require('harpoon.ui').nav_file(9) en
 
 vim.keymap.set('n', '<leader>t1', function() require('harpoon.term').gotoTerminal(1) end)
 vim.keymap.set('n', '<leader>t2', function() require('harpoon.term').gotoTerminal(2) end)
+-- stylua: ignore end

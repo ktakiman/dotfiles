@@ -34,12 +34,12 @@ cmp.setup({
     format = lspkind.cmp_format({
       with_text = true,
       menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[lsp]",
-        nvim_lua = "[api]",
-        path = "[path]",
-        luasnip = "[snip]",
-      }
+        buffer = '[buf]',
+        nvim_lsp = '[lsp]',
+        nvim_lua = '[api]',
+        path = '[path]',
+        luasnip = '[snip]',
+      },
     }),
   },
   experimental = {
@@ -63,5 +63,3 @@ cmp.setup({
 --     { name = 'cmdline' }
 --   })
 -- })
-
-
