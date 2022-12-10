@@ -45,8 +45,10 @@ local eslint = generateFormatFunc(function(path)
   return { 'npx', 'eslint', '--fix', path }
 end)
 
+local group = vim.api.nvim_create_augroup('KeiLint', { clear = true })
+
 vim.api.nvim_create_autocmd('BufWritePost', {
-  group = vim.api.nvim_create_augroup('KeiLint', { clear = true }),
+  group = group,
   pattern = '*.js',
   callback = function(arg)
     for _, ent in ipairs(js_lint) do
@@ -81,8 +83,8 @@ local clang_format = generateFormatFunc(function(path)
 end)
 
 vim.api.nvim_create_autocmd('BufWritePost', {
-  group = vim.api.nvim_create_augroup('KeiLint', { clear = true }),
-  pattern = '*.cpp',
+  group = group,
+  pattern = { '*.cpp', '*.cxx', '*.c', '*.h' },
   callback = function(arg)
     clang_format(arg.file)
   end,
@@ -97,7 +99,7 @@ local stylua = generateFormatFunc(function(path)
 end)
 
 vim.api.nvim_create_autocmd('BufWritePost', {
-  group = vim.api.nvim_create_augroup('KeiLint', { clear = true }),
+  group = group,
   pattern = '*.lua',
   callback = function(arg)
     stylua(arg.file)
