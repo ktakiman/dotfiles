@@ -41,8 +41,8 @@ ln -s "${DOTFILEDIR}/xdg_config/nvim/init.lua" ~/.config/nvim/
 ln -s "${DOTFILEDIR}/xdg_config/nvim/lua" ~/.config/nvim/
 
 # setup packer.nvim
+PACKERDIR=~/.local/share/nvim/site/pack/packer/start/packer.nvim
 if [ -d "$PACKERDIR" ];then
-  PACKERDIR=~/.local/share/nvim/site/pack/packer/start/packer.nvim
   mkdir -p "$PACKERDIR"
   git clone --depth 1 https://github.com/wbthomason/packer.nvim $PACKERDIR
 fi
