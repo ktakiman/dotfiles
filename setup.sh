@@ -15,10 +15,10 @@ fi
 #------------------------------------------------------------------------------
 
 # .bashrc
-echo "source ${DOTFILEDIR}/home/.bashrc" >> ~/.bashrc
+echo "\nsource ${DOTFILEDIR}/home/.bashrc\n" >> ~/.bashrc
 
 # .gitconfig
-printf "[include]\n\tpath=${DOTFILEDIR}/home/.gitconfig" >> ~/.gitconfig
+printf "\n[include]\n\tpath=${DOTFILEDIR}/home/.gitconfig" >> ~/.gitconfig
 
 #------------------------------------------------------------------------------
 # setup nvim
@@ -42,7 +42,7 @@ ln -s "${DOTFILEDIR}/xdg_config/nvim/lua" ~/.config/nvim/
 
 # setup packer.nvim
 PACKERDIR=~/.local/share/nvim/site/pack/packer/start/packer.nvim
-mkdir -p $PACKERDIR
+mkdir -p "$PACKERDIR"
 git clone --depth 1 https://github.com/wbthomason/packer.nvim $PACKERDIR
 
 PACKERONLY=1 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
