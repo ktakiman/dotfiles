@@ -47,7 +47,6 @@ local capabilities =
 -- local servers = { "clangd", "html", "cssls", "dockerls" }
 local servers = { 'clangd', 'cmake' }
 local nvim_lsp = require('lspconfig')
-local util = nvim_lsp.util
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({
