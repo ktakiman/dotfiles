@@ -42,6 +42,8 @@ vim.keymap.set('n', '<leader>gS', builtin.git_stash, { desc = 'Telescope: [g]it 
 vim.keymap.set('n', '<leader>lr', builtin.lsp_references, { desc = 'Telescope: [l]sp [r]eferences' })
 vim.keymap.set('n', '<leader>ld', builtin.lsp_definitions, { desc = 'Telescope: [l]sp [d]efinitions' })
 vim.keymap.set('n', '<leader>li', builtin.lsp_implementations, { desc = 'Telescope: [l]sp [i]mplementations' })
+vim.keymap.set('n', '<leader>ls', builtin.lsp_workspace_symbols, { desc = 'Telescope: [l]sp workspace [s]ymbols' })
+vim.keymap.set('n', '<leader>lS', builtin.lsp_document_symbols, { desc = 'Telescope: [l]sp document [S]ymbols' })
 
 vim.keymap.set('n', '<leader>ffc', function() builtin.find_files({cwd="~/.config/", follow=true}) end, { desc = 'Telescope: find config files' })
 vim.keymap.set('n', '<leader>ffp', function() builtin.find_files({cwd="~/.local/share/nvim/site/pack/packer"}) end, { desc = 'Telescope: find packer files' })
