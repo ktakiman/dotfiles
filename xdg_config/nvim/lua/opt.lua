@@ -8,6 +8,7 @@ vim.opt.expandtab = true
 vim.opt.fixendofline = false
 
 vim.opt.wrap = false
+vim.opt.breakindent = true
 
 vim.opt.scrolloff = 5
 
@@ -15,6 +16,7 @@ vim.opt.smartindent = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.hlsearch = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -28,3 +30,6 @@ vim.opt.clipboard = { 'unnamed', 'unnamedplus' }
 vim.opt.listchars = { tab = '»-', space = '.', eol = '↲', trail = '.' }
 
 vim.opt.mouse = 'nv'
+
+-- vim.opt.signcolumn = 'yes'
+-- vim.o.updatetime = 250
