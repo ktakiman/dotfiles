@@ -52,7 +52,7 @@ PACKERONLY=1 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'Packer
 #------------------------------------------------------------------------------
 # setup other config (todo: generalize script below so to work with any subfolder and config file)
 #------------------------------------------------------------------------------
-if [ -d ~/.config/stylua ]; then
+if [ ! -d ~/.config/stylua ]; then
   mkdir ~/.config/stylua
 fi
 
