@@ -6,17 +6,19 @@ return require('packer').startup(function(use)
   use('vim-scripts/ReplaceWithRegister')
   use('michaeljsmith/vim-indent-object')
 
+  use('kana/vim-textobj-user')
+
   use({
     'kana/vim-textobj-entire', -- get error sometimes, issue loading textobj-user?
-    requires = {
-      'kana/vim-textobj-user',
+    after = {
+      'vim-textobj-user',
     },
   })
 
   use({
     'kana/vim-textobj-line', -- get error sometimes, issue loading textobj-user?
-    requires = {
-      'kana/vim-textobj-user',
+    after = {
+      'vim-textobj-user',
     },
   })
 
