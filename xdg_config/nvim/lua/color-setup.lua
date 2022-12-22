@@ -1,3 +1,6 @@
+-- some colors are off with this option
+-- vim.opt.termguicolor = true
+
 vim.cmd({ cmd = 'colo', args = { 'gruvbox' } })
 
 vim.cmd({ cmd = 'hi', args = { 'Comment', 'cterm=italic' } })
