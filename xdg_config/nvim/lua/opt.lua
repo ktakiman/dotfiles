@@ -31,5 +31,6 @@ vim.opt.listchars = { tab = '»-', space = '.', eol = '↲', trail = '.' }
 
 vim.opt.mouse = 'nv'
 
+-- not exactly sure about what this would impacts (default is 4000)
+vim.o.updatetime = 250
 -- vim.opt.signcolumn = 'yes'
--- vim.o.updatetime = 250

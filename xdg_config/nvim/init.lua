@@ -30,6 +30,7 @@ require('nvim-dap-setup')
 require('nvim-dapui-setup')
 require('nerdtree-setup')
 require('floaterm-setup')
+require('treesitter-setup')
 
 -- language specific setup
 require('cpp-setup')
