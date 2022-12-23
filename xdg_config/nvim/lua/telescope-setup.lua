@@ -24,6 +24,7 @@ vim.keymap.set('n', '<c-s>', builtin.grep_string, { desc = 'Telescope: grep stri
 vim.keymap.set('n', '<leader>bi', builtin.builtin, { desc = 'Telescope: [b]uilt [i]n' })
 vim.keymap.set('n', '<leader>km', builtin.keymaps, { desc = 'Telescope: [k]ey [m]aps' })
 vim.keymap.set('n', '<leader>op', builtin.vim_options, { desc = 'Telescope: vim [op]tions' })
+vim.keymap.set('n', '<leader>F', builtin.find_files, { desc = 'Telescope: [F]ind files' })
 vim.keymap.set('n', '<leader>of', builtin.oldfiles, { desc = 'Telescope: [o]ld [f]iles' })
 vim.keymap.set('n', '<leader>mp', builtin.man_pages, { desc = 'Telescope: [m]an [p]age' })
 vim.keymap.set('n', '<leader>ht', builtin.help_tags, { desc = 'Telescope: [h]elp [t]ags' })
@@ -45,19 +46,19 @@ vim.keymap.set('n', '<leader>li', builtin.lsp_implementations, { desc = 'Telesco
 vim.keymap.set('n', '<leader>ls', builtin.lsp_workspace_symbols, { desc = 'Telescope: [l]sp workspace [s]ymbols' })
 vim.keymap.set('n', '<leader>lS', builtin.lsp_document_symbols, { desc = 'Telescope: [l]sp document [S]ymbols' })
 
-vim.keymap.set('n', '<leader>ffc', function() builtin.find_files({cwd="~/.config/", follow=true}) end, { desc = 'Telescope: find config files' })
-vim.keymap.set('n', '<leader>ffp', function() builtin.find_files({cwd="~/.local/share/nvim/site/pack/packer"}) end, { desc = 'Telescope: find packer files' })
+vim.keymap.set('n', '<leader>ffc', function() builtin.find_files({cwd='~/.config/', follow=true}) end, { desc = 'Telescope: find config files' })
+vim.keymap.set('n', '<leader>ffp', function() builtin.find_files({cwd='~/.local/share/nvim/site/pack/packer'}) end, { desc = 'Telescope: find packer files' })
 
 -- extensions
 vim.keymap.set('n', '<leader>fb', telescope.extensions.file_browser.file_browser, { desc = 'Telescope: [f]ile [b]rowser' })
 
 -- [dot]files
-vim.keymap.set('n', '<leader>mn', function() builtin.git_files({cwd="~/.dotfiles"}) end, { desc = 'Telescope: find dotfiles' })
+vim.keymap.set('n', '<leader>mn', function() builtin.git_files({cwd='~/.dotfiles'}) end, { desc = 'Telescope: find dotfiles' })
 
 -- [m]y[n]ote
-vim.keymap.set('n', '<leader>mn', function() builtin.git_files({cwd="~/mynote"}) end, { desc = 'Telescope: find mynote files' })
+vim.keymap.set('n', '<leader>mn', function() builtin.git_files({cwd='~/mynote'}) end, { desc = 'Telescope: find mynote files' })
 
 -- [m]ynote [g]rep
-vim.keymap.set('n', '<leader>mg', function() builtin.live_grep({cwd="~/mynote"}) end, { desc = 'Telescope: grep mynote files' })
+vim.keymap.set('n', '<leader>mg', function() builtin.live_grep({cwd='~/mynote'}) end, { desc = 'Telescope: grep mynote files' })
 
 -- stylua: ignore end
