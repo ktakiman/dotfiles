@@ -24,7 +24,14 @@ local capture_highlight = function()
   P(vim.treesitter.get_captures_at_cursor(0))
 end
 
+-- fold (would this cause issues on a document without a treesitter parser?)
+local enable_ts_fold = function()
+  vim.opt.foldmethod = 'expr'
+  vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+end
+
 -- stylua: ignore start
 vim.keymap.set('n', '<leader>tp', function() vim.cmd('TSPlaygroundToggle') end, { desc = 'Treesitter: toggle playground' })
+vim.keymap.set('n', '<leader>tf', enable_ts_fold, { desc = 'Treesitter: enable fold' })
 vim.keymap.set('n', '<leader>hi', capture_highlight, { desc = 'Treesitter: show highlight group under cursor' })
 -- stylua: ignore end
