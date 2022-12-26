@@ -12,7 +12,7 @@ vim.keymap.set('t', '<c-w>', '<c-\\><c-n><c-w>')
 
 local autocmd = require('lua-util').autocmd
 
-autocmd.on_filetype('json', 'MyJsonFileType', function()
+autocmd.on_filetype('json', function()
   vim.keymap.set('n', '<leader>jf', '<cmd>%!jq .<cr>')
   vim.keymap.set('n', '<leader>ju', '<cmd>%!jq -c .<cr>')
 end)
