@@ -30,6 +30,7 @@ vim.keymap.set('n', '<leader>mp', builtin.man_pages, { desc = 'Telescope: [m]an 
 vim.keymap.set('n', '<leader>ht', builtin.help_tags, { desc = 'Telescope: [h]elp [t]ags' })
 vim.keymap.set('n', '<leader>dg', builtin.diagnostics, { desc = 'Telescope: [d]ia[g]nostics' })
 vim.keymap.set('n', '<leader>ac', builtin.autocommands, { desc = 'Telescope: [a]uto [c]ommands' })
+vim.keymap.set('n', '<leader>hl', builtin.highlights, { desc = 'Telescope: [h]igh[l]ight' })
 vim.keymap.set('n', '<leader>cm', builtin.commands, { desc = 'Telescope: [c]o[m]mands' })
 vim.keymap.set('n', '<leader>ts', builtin.treesitter, { desc = 'Telescope: [t]ree[s]itter' })
 vim.keymap.set('n', '<leader>cb', builtin.current_buffer_fuzzy_find, { desc = 'Telescope: [c]urrent [b]uffer fuzzy find' })
@@ -62,3 +63,32 @@ vim.keymap.set('n', '<leader>mn', function() builtin.git_files({cwd='~/mynote'})
 vim.keymap.set('n', '<leader>mg', function() builtin.live_grep({cwd='~/mynote'}) end, { desc = 'Telescope: grep mynote files' })
 
 -- stylua: ignore end
+
+-- not sure if this is the best place to put this...
+local function exe_custom_livegrep(cwd, glob, max_ct)
+  local opts = {}
+
+  -- can i check if cwd is a valid string (and resolve relative path i.e. '..')
+  if cwd ~= nil and cwd ~= '.' then
+    opts.cwd = cwd
+  end
+
+  if glob ~= nil and glob ~= '*' then
+    opts.glob_pattern = glob
+  end
+
+  if max_ct ~= nil then
+    -- this does not work like -m=n
+    -- opts.max_results = tonumber(max_ct)
+
+    opts.additional_args = {
+      '-m=' .. max_ct,
+    }
+  end
+
+  builtin.live_grep(opts)
+end
+
+vim.api.nvim_create_user_command('Rg', function(o)
+  exe_custom_livegrep(o.fargs[1], o.fargs[2], o.fargs[3])
+end, { nargs = '*', complete = 'dir' })
