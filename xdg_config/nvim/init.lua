@@ -33,4 +33,4 @@ require('floaterm-setup')
 require('treesitter-setup')
 
 -- language specific setup
-require('cpp-setup')
+require('lang')

@@ -1,13 +1,19 @@
+local autocmd = require('lua-util').autocmd
+
+autocmd.on_filetype({ 'c', 'cpp' }, function()
+  vim.opt.cms = '//%s'
+end)
+
 --------------------------------------------------------------------------------
 -- comment style
 --------------------------------------------------------------------------------
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('KeiCpp', { clear = true }),
-  pattern = { 'c', 'cpp' },
-  callback = function()
-    vim.opt.cms = '//%s'
-  end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = vim.api.nvim_create_augroup('KeiCpp', { clear = true }),
+--   pattern = { 'c', 'cpp' },
+--   callback = function()
+--     vim.opt.cms = '//%s'
+--   end,
+-- })
 
 --------------------------------------------------------------------------------
 -- switch between .c/.cpp/.cxx <-> .h/.hpp/.hxx
