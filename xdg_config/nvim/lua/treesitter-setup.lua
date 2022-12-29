@@ -14,6 +14,7 @@ end
 -- all languages
 link_hl('@punctuation', 'Normal')
 link_hl('@variable', 'Normal')
+link_hl('@parameter', 'Normal')
 link_hl('@function', 'Normal')
 link_hl('@tag.delimiter', 'Normal')
 link_hl('@tag', 'Type')
