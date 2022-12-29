@@ -18,7 +18,8 @@ link_hl('@tag.delimiter', 'Normal')
 link_hl('@tag', 'Type')
 
 -- json
--- link_hl('@label.json', 'Normal')
+link_hl('@label.json', 'GruvboxAquaBold')
+link_hl('@string.json', 'GruvboxFg1')
 
 local capture_highlight = function()
   P(vim.treesitter.get_captures_at_cursor(0))
