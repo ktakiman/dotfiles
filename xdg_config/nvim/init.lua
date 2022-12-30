@@ -31,6 +31,7 @@ require('nvim-dapui-setup')
 require('nerdtree-setup')
 require('floaterm-setup')
 require('treesitter-setup')
+require('gitsigns-setup')
 
 -- language specific setup
 require('lang')
