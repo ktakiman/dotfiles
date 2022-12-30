@@ -29,6 +29,8 @@ vim.opt.clipboard = { 'unnamed', 'unnamedplus' }
 
 vim.opt.listchars = { tab = '»-', space = '.', eol = '↲', trail = '.' }
 
+vim.opt.wildignore = { '*.obj', '*.o', '*.pdb' }
+
 vim.opt.mouse = 'nv'
 
 -- not exactly sure about what this would impacts (default is 4000)
