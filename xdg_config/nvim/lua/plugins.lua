@@ -9,14 +9,14 @@ return require('packer').startup(function(use)
   use('kana/vim-textobj-user')
 
   use({
-    'kana/vim-textobj-entire', -- get error sometimes, issue loading textobj-user?
+    'kana/vim-textobj-entire',
     after = {
       'vim-textobj-user',
     },
   })
 
   use({
-    'kana/vim-textobj-line', -- get error sometimes, issue loading textobj-user?
+    'kana/vim-textobj-line',
     after = {
       'vim-textobj-user',
     },
@@ -56,6 +56,8 @@ return require('packer').startup(function(use)
   use('nvim-treesitter/playground')
 
   use('voldikss/vim-floaterm')
+
+  use('lewis6991/gitsigns.nvim')
 
   use('morhetz/gruvbox')
 end)
