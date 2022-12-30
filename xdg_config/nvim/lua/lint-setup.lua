@@ -53,7 +53,8 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   callback = function(arg)
     for _, ent in ipairs(js_lint) do
       -- just doing a simple string match, maybe switch to regex match for more flexibility?
-      local i, _ = string.find(arg.file, ent[1])
+      -- I saw 'arg.match' contains the full path, not sure it's publicly documented
+      local i, _ = string.find(arg.match, ent[1])
       if i == 1 then
         local hook
         if ent[2] == 'both' or ent[2] == 'pr' then
