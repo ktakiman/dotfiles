@@ -37,6 +37,13 @@ return require('packer').startup(function(use)
   use('nvim-telescope/telescope.nvim')
   use('nvim-telescope/telescope-file-browser.nvim')
 
+  use({
+    'nvim-tree/nvim-web-devicons',
+    config = function()
+      require('nvim-web-devicons').setup({ color_icons = true, default = true })
+    end,
+  })
+
   use('ThePrimeagen/harpoon')
 
   use('hrsh7th/cmp-buffer')
