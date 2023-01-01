@@ -45,7 +45,7 @@ local capabilities =
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 -- local servers = { "clangd", "html", "cssls", "dockerls" }
-local servers = { 'clangd', 'cmake' }
+local servers = { 'clangd', 'tsserver', 'cmake', 'dockerls' }
 local nvim_lsp = require('lspconfig')
 
 for _, lsp in ipairs(servers) do
@@ -55,18 +55,7 @@ for _, lsp in ipairs(servers) do
   })
 end
 
--- ## this does not work yet... ##
--- nvim_lsp.dockerls.setup({
---   cmd = { '/home/kei/.nvm/versions/node/v18.12.1/bin/docker-langserver', '--stdio' },
---   on_attach = on_attach,
---   capabilities = capabilities,
--- })
-
--- local sumneko_root_path = "/home/kei/dev/lua-language-server"
--- local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
-local sumneko_binary = '/home/kei/.local/lua-language-server/bin/lua-language-server'
 nvim_lsp.sumneko_lua.setup({
-  cmd = { sumneko_binary },
   settings = {
     Lua = {
       runtime = {

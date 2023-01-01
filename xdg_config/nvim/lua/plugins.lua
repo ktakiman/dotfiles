@@ -66,5 +66,12 @@ return require('packer').startup(function(use)
 
   use('lewis6991/gitsigns.nvim')
 
+  use({
+    'williamboman/mason.nvim',
+    config = function()
+      require('mason').setup()
+    end,
+  })
+
   use('morhetz/gruvbox')
 end)
