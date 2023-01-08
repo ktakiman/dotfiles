@@ -124,20 +124,19 @@ dap.configurations.rust = dap.configurations.cpp
 
 -- the goal here is start debug session as last run without prompting for input
 local function StartNoPrompt()
-  print(dap.session())
   if dap.session() then
-    print('dap.continue()')
     dap.continue()
   else
-    print('dap.run()')
     g_skip_prompt = true
     dap.run(launch)
   end
 end
 
 local function StartWithPrompt()
-  g_skip_prompt = false
-  dap.continue()
+  if not dap.session() then
+    g_skip_prompt = false
+    dap.continue()
+  end
 end
 
 -- my custom functions
@@ -155,11 +154,11 @@ vim.keymap.set('n', '<f8>', dap.step_out)
 vim.keymap.set('n', '<f9>', dap.toggle_breakpoint)
 vim.keymap.set('n', '<leader>dbs', dap.toggle_breakpoint)
 
--- some dapui config (ui configuration is in nvim-dapui-setup.lua)
 local dapui = require('dapui')
 
 vim.keymap.set('n', '<f4>', dapui.toggle)
 
-dap.listeners.after['event_initialized']['dapui_config'] = dapui.open
+-- hook dap events to dapui actions (ui config is in nvim-dapui-setup.lua)
+-- dap.listeners.after['event_initialized']['dapui_config'] = dapui.open
 dap.listeners.before['event_terminated']['dapui_config'] = dapui.close
 dap.listeners.before['event_exited']['dapui_config'] = dapui.close
